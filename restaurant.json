@@ -1,0 +1,127 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+      "title": "Restaurant App",
+      "license": {
+        "name": "Apache 2.0",
+        "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+      },
+      "version": "1.0.11"
+    },
+    "servers": [
+      {
+        "url": ""
+      }
+    ],
+    "paths": {},
+    "components": {
+      "schemas": {
+        "Orders": {
+          "type": "object",
+          "properties": {
+            "nbTable": {
+              "type": "number",
+              "example": 2
+            },
+            "Order": {
+              "type": "array",
+              "items": {
+                "$ref": "#/components/schemas/Order"
+              }
+            }
+          },
+          "xml": {
+            "name": "order"
+          }
+        },
+        "Reservation": {
+          "type": "object",
+          "properties": {
+            "date": {
+              "type": "string",
+              "format": "date-time"
+            },
+            "nbPers": {
+              "type": "number"
+            },
+            "child": {
+              "type": "object",
+              "properties": {
+                "hasChild": {
+                  "type": "boolean"
+                },
+                "nbChid": {
+                  "type": "number"
+                }
+              }
+            },
+            "preferences": {
+              "type": "array",
+              "items": {
+                "type": "string",
+                "enum": [
+                  "Vegetarian",
+                  "Halal",
+                  "Vegan",
+                  "No Alcohol"
+                ]
+              }
+            }
+          }
+        },
+        "Order": {
+          "type": "object",
+          "properties": {
+            "Start": {
+              "type": "object",
+              "properties": {
+                "inOrder": {
+                  "type": "boolean"
+                },
+                "name": {
+                  "type": "string",
+                  "enum": [
+                    "1",
+                    "2",
+                    "3"
+                  ]
+                }
+              }
+            },
+            "Dish": {
+              "type": "object",
+              "properties": {
+                "inOrder": {
+                  "type": "boolean"
+                },
+                "name": {
+                  "type": "string",
+                  "enum": [
+                    "1",
+                    "2",
+                    "3"
+                  ]
+                }
+              }
+            },
+            "Desert": {
+              "type": "object",
+              "properties": {
+                "inOrder": {
+                  "type": "boolean"
+                },
+                "name": {
+                  "type": "string",
+                  "enum": [
+                    "1",
+                    "2",
+                    "3"
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }

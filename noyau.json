@@ -1,0 +1,70 @@
+{
+    "openapi": "3.0.3",
+    "info": {
+      "title": "Restaurant App",
+      "license": {
+        "name": "Apache 2.0",
+        "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+      },
+      "version": "1.0.11"
+    },
+    "servers": [
+      {
+        "url": ""
+      }
+    ],
+    "paths": {}, 
+    "components": {
+      "schemas": {
+        "DateList": {
+          "type": "array",
+          "items": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "Poll": {
+          "type": "object",
+          "properties": {
+            "question": {
+              "type": "string"
+            },
+            "options": {
+              "type": "array",
+              "items": {
+                "type": "object",
+                "properties": {
+                  "option": {
+                    "type": "string"
+                  },
+                  "checked": {
+                    "type": "boolean"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "YesNoMessage": {
+          "type": "object",
+          "properties": {
+            "question": {
+              "type": "string"
+            },
+            "choice": {
+              "type": "boolean"
+            }
+          }
+        },
+        "TextMessage": {
+          "type": "object",
+          "properties": {
+            "content": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  }
+  
