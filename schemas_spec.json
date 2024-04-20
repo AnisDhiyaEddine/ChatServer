@@ -42,52 +42,69 @@
     "Order": {
         "type": "object",
         "properties": {
-          "Start": {
-            "type": "object",
-            "properties": {
-              "inOrder": {
-                "type": "boolean"
-              },
-              "name": {
-                "type": "string",
-                "valid": [
-                  "1",
-                  "2",
-                  "3"
-                ]
-              }
-            }
-          },
-          "Dish": {
-            "type": "object",
-            "properties": {
-              "inOrder": {
-                "type": "boolean"
-              },
-              "name": {
-                "type": "string",
-                "valid": [
-                  "1",
-                  "2",
-                  "3"
-                ]
-              }
-            }
-          },
-          "Desert": {
-            "type": "object",
-            "properties": {
-              "inOrder": {
-                "type": "boolean"
-              },
-              "name": {
-                "type": "string",
-                "valid": [
-                  "1",
-                  "2",
-                  "3"
-                ]
-              }
+          "content" : {
+            "type" : "object",
+            "properties" :{
+                "Start": {
+                  "type": "object",
+                  "properties": {
+                    "inOrder": {
+                      "type": "boolean"
+                    },
+                    "name": {
+                      "type": "string",
+                      "valid": [
+                        "Oeufs à la mayonnaise",
+                        "Salade tomates mozzarella",
+                        "Salade de chèvre chaud",
+                        "Salade César",
+                        "Salade de gésiers", 
+                        ""
+                      ]
+                    }
+                  }
+                },
+                "Dish": {
+                  "type": "object",
+                  "properties": {
+                    "inOrder": {
+                      "type": "boolean"
+                    },
+                    "name": {
+                      "type": "string",
+                      "valid": [
+                        "Pates carbonara",
+                        "Pates bolognaise",
+                        "Escalope milanaise",
+                        "Steak frites",
+                        "Pizza",
+                        "Ravioles aux fromages", 
+                        ""
+                      ]
+                    }
+                  }
+                },
+                "Desert": {
+                  "type": "object",
+                  "properties": {
+                    "inOrder": {
+                      "type": "boolean"
+                    },
+                    "name": {
+                      "type": "string",
+                      "valid": [
+                        "Tiramisu",
+                        "Mousse au chocolat",
+                        "Crème brulée",
+                        "Tarte aux pommes",
+                        "Tarte au citron",
+                        "Fondant au chocolat", 
+                        "Café gourmand", 
+                        ""
+                      ]
+                    }
+                  }
+                }
             }
           }
         }
@@ -95,15 +112,82 @@
     "Orders": {
         "type": "object",
         "properties": {
-          "nbTable": {
-            "type": "number"
-          },
-          "orderList": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Order"
+          "content" : {
+            "type" : "object",
+            "properties" :{
+                "nbTable": {
+                  "type": "number"
+                },
+                "orderList": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "Start": {
+                        "type": "object",
+                        "properties": {
+                          "inOrder": {
+                            "type": "boolean"
+                          },
+                          "name": {
+                            "type": "string",
+                            "valid": [
+                              "Oeufs à la mayonnaise",
+                              "Salade tomates mozzarella",
+                              "Salade de chèvre chaud",
+                              "Salade César",
+                              "Salade de gésiers", 
+                              ""
+                            ]
+                          }
+                        }
+                      },
+                      "Dish": {
+                        "type": "object",
+                        "properties": {
+                          "inOrder": {
+                            "type": "boolean"
+                          },
+                          "name": {
+                            "type": "string",
+                            "valid": [
+                              "Pates carbonara",
+                              "Pates bolognaise",
+                              "Escalope milanaise",
+                              "Steak frites",
+                              "Pizza",
+                              "Ravioles aux fromages", 
+                              ""
+                            ]
+                          }
+                        }
+                      },
+                      "Desert": {
+                        "type": "object",
+                        "properties": {
+                          "inOrder": {
+                            "type": "boolean"
+                          },
+                          "name": {
+                            "type": "string",
+                            "valid": [
+                              "Tiramisu",
+                              "Mousse au chocolat",
+                              "Crème brulée",
+                              "Tarte aux pommes",
+                              "Tarte au citron",
+                              "Fondant au chocolat", 
+                              "Café gourmand", 
+                              ""
+                            ]
+                          }
+                        }
+                      }
+                  }
+                }
             }
           }
         }
       }
+    }
 }

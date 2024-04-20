@@ -23,6 +23,7 @@ const joiSchemas = { ...joiSchemasNoyau, ...joiSchemasSpec };
 const validateMessage = (message, next) => {
     let { type, content } = JSON.parse(message);
     content = JSON.parse(content);
+    console.log('Content:', content);
 
     
     // Récupérer le schéma de validation correspondant au type de message
@@ -35,7 +36,7 @@ const validateMessage = (message, next) => {
 
     // Validation du message
     //passer content en objet pour la validation
-    const { error } = schema.validate({ content });
+    const { error } = schema.validate(content);
     if (error) {
         console.error('Validation error:', error.message);
         throw new Error(error.message);

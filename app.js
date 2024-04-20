@@ -19,6 +19,7 @@ io.on('connect', (socket) => {
     socket.on('new-message', (message) => {
         console.log('New message:', message);
         const { client, content, type } = JSON.parse(message);
+        
         // Utilisez le middleware de validation ici
         try {
             validateMessage(message, () => {
