@@ -1,0 +1,102 @@
+{
+    "Text": {
+      "type": "object",
+      "properties": {
+        "content": {
+          "type": "string",
+          "min": 3
+        }
+      },
+      "required": ["content"]
+    },
+    "Date": {
+      "type": "object",
+      "properties": {
+        "content": {
+          "type": "string",
+          "pattern": "^(0[1-9]|[1-2][0-9]|3[0-1])/(0[1-9]|1[0-2])/\\d{4}$"
+        }
+      } 
+    }, 
+    "Time": {
+      "type": "object",
+      "properties": {
+        "content": {
+          "type": "string",
+          "pattern": "^(0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$"
+        }
+      } 
+    }, 
+    "DateTime": {
+      "type": "object",
+      "properties": {
+        "content": {
+          "type": "string",
+          "pattern": "^(0[1-9]|[1-2][0-9]|3[0-1])/(0[1-9]|1[0-2])/\\d{4} (0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$"
+        }
+      } 
+    },
+    "Number": {
+      "type": "object",
+      "properties": {
+        "content": {
+          "type": "number"
+        }
+      } 
+    },
+    "Boolean": {
+      "type": "object",
+      "properties": {
+        "content": {
+          "type": "boolean"
+        }
+      } 
+    }, 
+    "YesNo": {
+        "type": "object",
+        "properties": {
+          "content": {
+            "type": "string",
+            "valid": ["oui", "non", "Oui", "Non", "OUI", "NON"]
+          }
+        },
+        "required": ["content"]
+      }, 
+    "Email": {
+        "type": "object",
+        "properties": {
+            "content": {
+            "type": "string",
+            "pattern": "^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$"
+            }
+        } 
+    }, 
+    "Poll" : {
+        "type": "object",
+        "properties": {
+            "content": {
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "question": {
+                            "type": "string",
+                            "min": 3
+                        },
+                        "answers": {
+                            "type": "array",
+                            "items": {
+                                "type": "string",
+                                "min": 1
+                            }
+                        }
+                    },
+                    "required": ["question", "answers"]
+                }
+            }
+        }
+    }
+}
+  
+      
+  

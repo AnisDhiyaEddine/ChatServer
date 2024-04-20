@@ -1,0 +1,104 @@
+{
+    "Reservation": {
+        "type": "object",
+        "properties": {
+          "date": {
+            "type": "string",
+            "pattern": "^(0[1-9]|[1-2][0-9]|3[0-1])/(0[1-9]|1[0-2])/\\d{4} (0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$"
+            },
+          "nbPers": {
+            "type": "number"
+          },
+          "child": {
+            "type": "object",
+            "properties": {
+              "hasChild": {
+                "type": "boolean"
+              },
+              "nbChid": {
+                "type": "number"
+              }
+            }
+          },
+          "preferences": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "valid": [
+                "Vegetarian",
+                "Halal",
+                "Vegan",
+                "No Alcohol"
+              ]
+            }
+          }
+        }
+      }, 
+    "Order": {
+        "type": "object",
+        "properties": {
+          "Start": {
+            "type": "object",
+            "properties": {
+              "inOrder": {
+                "type": "boolean"
+              },
+              "name": {
+                "type": "string",
+                "valid": [
+                  "1",
+                  "2",
+                  "3"
+                ]
+              }
+            }
+          },
+          "Dish": {
+            "type": "object",
+            "properties": {
+              "inOrder": {
+                "type": "boolean"
+              },
+              "name": {
+                "type": "string",
+                "valid": [
+                  "1",
+                  "2",
+                  "3"
+                ]
+              }
+            }
+          },
+          "Desert": {
+            "type": "object",
+            "properties": {
+              "inOrder": {
+                "type": "boolean"
+              },
+              "name": {
+                "type": "string",
+                "valid": [
+                  "1",
+                  "2",
+                  "3"
+                ]
+              }
+            }
+          }
+        }
+      }, 
+    "Orders": {
+        "type": "object",
+        "properties": {
+          "nbTable": {
+            "type": "number"
+          },
+          "orderList": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Order"
+            }
+          }
+        }
+      }
+}
