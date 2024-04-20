@@ -18,18 +18,27 @@ io.on('connect', (socket) => {
   
     socket.on('new-message', (message) => {
         console.log('New message:', message);
+        const { client, content, type } = JSON.parse(message);
         // Utilisez le middleware de validation ici
-        validateMessage(message, () => {
-            const { client, content, type } = JSON.parse(message);
-            console.log('Client:', client);
-            console.log('Content:', content);
-            console.log('Type:', type);
+        try {
+            validateMessage(message, () => {
+                
+                console.log('Client:', client);
+                console.log('Content:', content);
+                console.log('Type:', type);
 
+                io.emit('broadcast', {
+                    client,
+                    content: content + ' - Server'
+                });
+            });
+        } catch (error) {
+            console.error('Validation error:', error.message);
             io.emit('broadcast', {
                 client,
-                content: content + ' - Server'
+                content: 'Validation error: ' + error.message
             });
-        });
+        }
     });
 
     socket.on('disconnect', () => {
