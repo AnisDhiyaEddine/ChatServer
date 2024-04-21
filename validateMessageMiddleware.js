@@ -1,19 +1,30 @@
 const Joi = require('@hapi/joi');
 const { fromJson, toJson } = require('json-joi-converter');
-const jsonSchemas = require('./schemas_noyau.json');
+const jsonSchemasNoyau = require('./schemas_noyau.json');
+const jsonSchemasSpec = require('./schemas_spec.json');
 
 // Convertir le schéma de validation JSON en schéma de validation Joi
-const joiSchemas = {};
-for (const [typeName, schema] of Object.entries(jsonSchemas)) {
-    joiSchemas[typeName] = fromJson(schema);
+const joiSchemasNoyau = {};
+for (const [typeName, schema] of Object.entries(jsonSchemasNoyau)) {
+    joiSchemasNoyau[typeName] = fromJson(schema);
 }
-console.log('Joi Schemas:', joiSchemas);
-console.log('Joi Schemas - JSON:', toJson(joiSchemas));
+// console.log('Joi Schemas:', joiSchemas);
+// console.log('Joi Schemas - JSON:', toJson(joiSchemas));
 
+const joiSchemasSpec = {};
+for (const [typeName, schema] of Object.entries(jsonSchemasSpec)) {
+    joiSchemasSpec[typeName] = fromJson(schema);
+}
+
+// Fusionner les schémas de validation Noyau et Spécifique
+const joiSchemas = { ...joiSchemasNoyau, ...joiSchemasSpec };
 
 // Fonction de validation pour vérifier les messages en fonction de leur type
 const validateMessage = (message, next) => {
-    const { type, content } = JSON.parse(message);
+    let { type, content } = JSON.parse(message);
+    content = JSON.parse(content);
+    console.log('Content:', content);
+
     
     // Récupérer le schéma de validation correspondant au type de message
     const schema = joiSchemas[type];
@@ -24,9 +35,11 @@ const validateMessage = (message, next) => {
     }
 
     // Validation du message
-    const { error } = schema.validate({ content });
+    //passer content en objet pour la validation
+    const { error } = schema.validate(content);
     if (error) {
         console.error('Validation error:', error.message);
+        throw new Error(error.message);
         return;
     }
 
