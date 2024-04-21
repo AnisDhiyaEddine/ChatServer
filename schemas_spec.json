@@ -1,50 +1,124 @@
 {
-    "Reservation": {      
+  "Reservation": {
+    "type": "object",
+    "properties": {
+      "content": {
         "type": "object",
         "properties": {
-          "content" : {
-            "type" : "object", 
-            "properties" : {
-              "date": {
+          "date": {
+            "type": "string",
+            "pattern": "^(0[1-9]|[1-2][0-9]|3[0-1])/(0[1-9]|1[0-2])/\\d{4} (0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$"
+          },
+          "nbPers": {
+            "type": "number",
+            "min": 1
+          },
+          "child": {
+            "type": "object",
+            "properties": {
+              "hasChild": {
+                "type": "boolean"
+              },
+              "nbChild": {
+                "type": "number",
+                "min": 0
+              }
+            }
+          },
+          "preferences": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      }
+    }
+  },
+  "Order": {
+    "type": "object",
+    "properties": {
+      "content": {
+        "type": "object",
+        "properties": {
+          "Start": {
+            "type": "object",
+            "properties": {
+              "inOrder": {
+                "type": "boolean"
+              },
+              "name": {
                 "type": "string",
-                "pattern": "^(0[1-9]|[1-2][0-9]|3[0-1])/(0[1-9]|1[0-2])/\\d{4} (0[0-9]|1[0-9]|2[0-3]):[0-5][0-9]$"
-                },
-              "nbPers": {
-                "type": "number"
+                "valid": [
+                  "Oeufs à la mayonnaise",
+                  "Salade tomates mozzarella",
+                  "Salade de chèvre chaud",
+                  "Salade César",
+                  "Salade de gésiers",
+                  ""
+                ]
+              }
+            }
+          },
+          "Dish": {
+            "type": "object",
+            "properties": {
+              "inOrder": {
+                "type": "boolean"
               },
-              "child": {
-                "type": "object",
-                "properties": {
-                  "hasChild": {
-                    "type": "boolean"
-                  },
-                  "nbChid": {
-                    "type": "number"
-                  }
-                }
+              "name": {
+                "type": "string",
+                "valid": [
+                  "Pates carbonara",
+                  "Pates bolognaise",
+                  "Escalope milanaise",
+                  "Steak frites",
+                  "Pizza",
+                  "Ravioles aux fromages",
+                  ""
+                ]
+              }
+            }
+          },
+          "Desert": {
+            "type": "object",
+            "properties": {
+              "inOrder": {
+                "type": "boolean"
               },
-              "preferences": {
-                "type": "array",
-                "items": {
-                  "type": "string",
-                  "valid": [
-                    "Vegetarian",
-                    "Halal",
-                    "Vegan",
-                    "No Alcohol"
-                  ]
-                }
+              "name": {
+                "type": "string",
+                "valid": [
+                  "Tiramisu",
+                  "Mousse au chocolat",
+                  "Crème brulée",
+                  "Tarte aux pommes",
+                  "Tarte au citron",
+                  "Fondant au chocolat",
+                  "Café gourmand",
+                  ""
+                ]
               }
             }
           }
         }
-      }, 
-    "Order": {
+      }
+    }
+  },
+  "Orders": {
+    "type": "object",
+    "properties": {
+      "content": {
         "type": "object",
         "properties": {
-          "content" : {
-            "type" : "object",
-            "properties" :{
+          "nbTable": {
+            "type": "number"
+          },
+          "orderList": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "properties": {
                 "Start": {
                   "type": "object",
                   "properties": {
@@ -58,7 +132,7 @@
                         "Salade tomates mozzarella",
                         "Salade de chèvre chaud",
                         "Salade César",
-                        "Salade de gésiers", 
+                        "Salade de gésiers",
                         ""
                       ]
                     }
@@ -78,7 +152,7 @@
                         "Escalope milanaise",
                         "Steak frites",
                         "Pizza",
-                        "Ravioles aux fromages", 
+                        "Ravioles aux fromages",
                         ""
                       ]
                     }
@@ -98,96 +172,18 @@
                         "Crème brulée",
                         "Tarte aux pommes",
                         "Tarte au citron",
-                        "Fondant au chocolat", 
-                        "Café gourmand", 
+                        "Fondant au chocolat",
+                        "Café gourmand",
                         ""
                       ]
                     }
                   }
                 }
-            }
-          }
-        }
-      }, 
-    "Orders": {
-        "type": "object",
-        "properties": {
-          "content" : {
-            "type" : "object",
-            "properties" :{
-                "nbTable": {
-                  "type": "number"
-                },
-                "orderList": {
-                  "type": "array",
-                  "items": {
-                    "type": "object",
-                    "properties": {
-                      "Start": {
-                        "type": "object",
-                        "properties": {
-                          "inOrder": {
-                            "type": "boolean"
-                          },
-                          "name": {
-                            "type": "string",
-                            "valid": [
-                              "Oeufs à la mayonnaise",
-                              "Salade tomates mozzarella",
-                              "Salade de chèvre chaud",
-                              "Salade César",
-                              "Salade de gésiers", 
-                              ""
-                            ]
-                          }
-                        }
-                      },
-                      "Dish": {
-                        "type": "object",
-                        "properties": {
-                          "inOrder": {
-                            "type": "boolean"
-                          },
-                          "name": {
-                            "type": "string",
-                            "valid": [
-                              "Pates carbonara",
-                              "Pates bolognaise",
-                              "Escalope milanaise",
-                              "Steak frites",
-                              "Pizza",
-                              "Ravioles aux fromages", 
-                              ""
-                            ]
-                          }
-                        }
-                      },
-                      "Desert": {
-                        "type": "object",
-                        "properties": {
-                          "inOrder": {
-                            "type": "boolean"
-                          },
-                          "name": {
-                            "type": "string",
-                            "valid": [
-                              "Tiramisu",
-                              "Mousse au chocolat",
-                              "Crème brulée",
-                              "Tarte aux pommes",
-                              "Tarte au citron",
-                              "Fondant au chocolat", 
-                              "Café gourmand", 
-                              ""
-                            ]
-                          }
-                        }
-                      }
-                  }
-                }
+              }
             }
           }
         }
       }
     }
+  }
 }
